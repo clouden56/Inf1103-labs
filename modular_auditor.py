@@ -41,7 +41,7 @@ def main():
         
         print(f"Tax for this delivery: {tax}")
         
-        # From previous lab, though not explicitly required here, retaining it is safe
+        
         if inventory > 500:
             print("Alert: Inventory exceeds 500 units.")
             break
