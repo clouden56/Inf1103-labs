@@ -4,15 +4,18 @@ INVENTORY_FILE = os.environ.get("INVENTORY_FILE", "inventory.txt")
 
 def load_inventory():
     total = 0
+    history = []
     try:
         with open(INVENTORY_FILE, "r") as file:
             for line in file:
                 key, _, value = line.strip().partition("=")
                 if key == "total" and value:
                     total = int(value)
+                elif key == "history" and value:
+                    history = [int(amount) for amount in value.split(",")]
     except FileNotFoundError:
         print("No inventory file found. Starting with an empty inventory.")
-    return total
+    return total, history
 
 def get_valid_input():
     entry = input("Enter stock quantity or type 'quit': ").strip()
@@ -37,11 +40,12 @@ def generate_report(total_units, failed_attempts):
     print(f"Number of Failed/Rejected Entries: {failed_attempts}")
 
 def main():
-    inventory = load_inventory()
+    inventory, history = load_inventory()
     failed_entries = 0
     deliveries_processed = 0
 
     print(f"Current Inventory: {inventory}")
+    print(f"Transaction History: {history}")
 
     while True:
         value = get_valid_input()
@@ -54,6 +58,7 @@ def main():
             continue
 
         inventory = process_delivery(inventory, value)
+        history.append(value)
         tax = calculate_tax(value)
         deliveries_processed += 1
 
@@ -65,6 +70,7 @@ def main():
             break
 
     generate_report(inventory, failed_entries)
+    print(f"Transaction History: {history}")
 
 if __name__ == "__main__":
     main()
