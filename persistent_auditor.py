@@ -17,6 +17,12 @@ def load_inventory():
         print("No inventory file found. Starting with an empty inventory.")
     return total, history
 
+def save_inventory(total, history):
+    with open(INVENTORY_FILE, "w") as file:
+        file.write(f"total={total}\n")
+        file.write(f"history={','.join(str(amount) for amount in history)}\n")
+    print(f"Inventory successfully saved to {INVENTORY_FILE}")
+
 def get_valid_input():
     entry = input("Enter stock quantity or type 'quit': ").strip()
     if entry.lower() == "quit":
@@ -71,6 +77,7 @@ def main():
 
     generate_report(inventory, failed_entries)
     print(f"Transaction History: {history}")
+    save_inventory(inventory, history)
 
 if __name__ == "__main__":
     main()

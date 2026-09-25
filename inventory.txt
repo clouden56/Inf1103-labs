@@ -1,0 +1,2 @@
+total=75
+history=10,25,40
