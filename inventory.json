@@ -29,6 +29,12 @@
             "name": "Webcam",
             "price": 59.9,
             "stock": 8
+        },
+        {
+            "id": "P006",
+            "name": "Gaming Chair",
+            "price": 150.0,
+            "stock": 13
         }
     ],
     "history": [
@@ -46,6 +52,11 @@
             "id": "P005",
             "action": "add",
             "amount": 8
+        },
+        {
+            "id": "P006",
+            "action": "add",
+            "amount": 13
         }
     ]
 }
