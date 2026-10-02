@@ -35,6 +35,12 @@
             "name": "Gaming Chair",
             "price": 150.0,
             "stock": 13
+        },
+        {
+            "id": "P007",
+            "name": "Test Product",
+            "price": 100.0,
+            "stock": 1000
         }
     ],
     "history": [
@@ -57,6 +63,11 @@
             "id": "P006",
             "action": "add",
             "amount": 13
+        },
+        {
+            "id": "P007",
+            "action": "add",
+            "amount": 1000
         }
     ]
 }
