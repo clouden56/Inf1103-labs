@@ -1,0 +1,11 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY inventory_manager.py .
+
+# inventory.json lives in /app/data so it can be mounted as a volume
+ENV INVENTORY_FILE=/app/data/inventory.json
+RUN mkdir -p /app/data
+
+CMD ["python", "inventory_manager.py"]

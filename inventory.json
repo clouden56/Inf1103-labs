@@ -23,6 +23,12 @@
             "name": "Monitor",
             "price": 299.99,
             "stock": 10
+        },
+        {
+            "id": "P005",
+            "name": "Webcam",
+            "price": 59.9,
+            "stock": 8
         }
     ],
     "history": [
@@ -35,6 +41,11 @@
             "id": "P002",
             "action": "update",
             "amount": 10
+        },
+        {
+            "id": "P005",
+            "action": "add",
+            "amount": 8
         }
     ]
 }
