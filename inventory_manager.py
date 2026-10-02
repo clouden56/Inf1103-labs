@@ -1,3 +1,22 @@
+import json
+import os
+
+INVENTORY_FILE = os.environ.get("INVENTORY_FILE", "inventory.json")
+
+def load_inventory():
+    if not os.path.exists(INVENTORY_FILE):
+        print(f"{os.path.basename(INVENTORY_FILE)} not found. Starting with an empty inventory.")
+        return [], []
+    print(f"{os.path.basename(INVENTORY_FILE)} found.")
+    try:
+        with open(INVENTORY_FILE, "r") as file:
+            data = json.load(file)
+    except json.JSONDecodeError:
+        print("Error: inventory file is corrupted. Starting with an empty inventory.")
+        return [], []
+    print("Inventory loaded successfully.")
+    return data.get("products", []), data.get("history", [])
+
 def add_product(inventory, product_id, name, price, stock):
     if search_product(inventory, product_id) is not None:
         return False
@@ -33,11 +52,9 @@ def display_all(inventory):
     print("-" * 48)
 
 def main():
-    inventory = []
-    add_product(inventory, "P001", "Laptop", 1200.00, 15)
-    add_product(inventory, "P002", "Mouse", 25.50, 40)
-    add_product(inventory, "P003", "Keyboard", 45.00, 25)
+    inventory, history = load_inventory()
     display_all(inventory)
+    print(f"Transaction History: {history}")
 
 if __name__ == "__main__":
     main()
