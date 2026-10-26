@@ -2,10 +2,8 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY inventory_manager.py .
+COPY product.py inventory.py inventory_storage.py inventory_manager.py ./
 
-# inventory.json lives in /app/data so it can be mounted as a volume
-ENV INVENTORY_FILE=/app/data/inventory.json
-RUN mkdir -p /app/data
-
+# inventory.json is read from /app, so mounting the project folder
+# (-v "${PWD}:/app") uses the local code and inventory.json directly
 CMD ["python", "inventory_manager.py"]
