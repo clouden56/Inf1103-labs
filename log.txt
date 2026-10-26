@@ -1,4 +1,22 @@
-commit f343496685751f675cfc2c5f6632099861e42a50
+commit b5557d4434b65e63e2bfd7b0aa27c242875b9891
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Mon Oct 26 14:41:08 2026 +0800
+
+    Update git log for week 8
+
+commit f6b15a9859ee9984dcad458f9d3c043602c1a170
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Mon Oct 26 14:41:07 2026 +0800
+
+    Add class and name (P6_FadilSalleh) to UML class diagram
+
+commit 9b00d73c8bbbf0b9a3453b3d7a66e3822054cca1
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Mon Oct 26 14:35:48 2026 +0800
+
+    Update git log for week 8
+
+commit ab1c4a9c16c250c146d8be0c15006268a66df3f0
 Author: clouden56 <2603050@sit.singaporetech.edu.sg>
 Date:   Mon Oct 26 14:35:48 2026 +0800
 
@@ -6,9 +24,8 @@ Date:   Mon Oct 26 14:35:48 2026 +0800
     
     Dockerfile.inventory now copies all modules and reads inventory.json
     from /app so the project folder can be volume-mounted.
-    
 
-commit 7aa6862b232b03ef73b79215756dd8b12c3cf952
+commit 187fa7f4192136418c8c3396bc4621356081fe97
 Author: clouden56 <2603050@sit.singaporetech.edu.sg>
 Date:   Mon Oct 26 14:33:55 2026 +0800
 
@@ -16,21 +33,18 @@ Date:   Mon Oct 26 14:33:55 2026 +0800
     
     Menu in inventory_manager.py now talks to an Inventory object; JSON
     load/save moved into inventory_storage.py.
-    
 
-commit 8694c24f5846a38592c9d9737238cf6ea54267d2
+commit 6bfe011633ee7de63a6f589f7d24723ff2bfd0d6
 Author: clouden56 <2603050@sit.singaporetech.edu.sg>
 Date:   Mon Oct 26 14:33:22 2026 +0800
 
     Create Inventory class to manage a collection of Product objects
-    
 
-commit f2099a9140db166384bcbcd21c3ae47c8b1ee6a5
+commit 4e99826aacea9e6c277212f322932f2297973dfa
 Author: clouden56 <2603050@sit.singaporetech.edu.sg>
 Date:   Mon Oct 26 14:33:12 2026 +0800
 
     Create Product class with encapsulated attributes, update_stock() and display_information()
-    
 
 commit a8e0fe2f6d52a897d63ce8b3246d745c89e30a20
 Author: clouden56 <fadilsalleh56@gmail.com>
