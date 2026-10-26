@@ -46,7 +46,13 @@
             "id": "123",
             "name": "test product",
             "price": 100.0,
-            "stock": 12
+            "stock": 0
+        },
+        {
+            "id": "0808",
+            "name": "Lab8Product",
+            "price": 8.0,
+            "stock": 8
         }
     ],
     "history": [
@@ -79,6 +85,16 @@
             "id": "123",
             "action": "add",
             "amount": 12
+        },
+        {
+            "id": "123",
+            "action": "update",
+            "amount": -12
+        },
+        {
+            "id": "0808",
+            "action": "add",
+            "amount": 8
         }
     ]
 }
