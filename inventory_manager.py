@@ -1,59 +1,9 @@
-import json
 import os
 
+from inventory_storage import load_inventory, save_inventory
+from product import Product
+
 INVENTORY_FILE = os.environ.get("INVENTORY_FILE", "inventory.json")
-
-def load_inventory():
-    if not os.path.exists(INVENTORY_FILE):
-        print(f"{os.path.basename(INVENTORY_FILE)} not found. Starting with an empty inventory.")
-        return [], []
-    print(f"{os.path.basename(INVENTORY_FILE)} found.")
-    try:
-        with open(INVENTORY_FILE, "r") as file:
-            data = json.load(file)
-    except json.JSONDecodeError:
-        print("Error: inventory file is corrupted. Starting with an empty inventory.")
-        return [], []
-    print("Inventory loaded successfully.")
-    return data.get("products", []), data.get("history", [])
-
-def save_inventory(inventory, history):
-    with open(INVENTORY_FILE, "w") as file:
-        json.dump({"products": inventory, "history": history}, file, indent=4)
-
-def add_product(inventory, product_id, name, price, stock):
-    if search_product(inventory, product_id) is not None:
-        return False
-    inventory.append({
-        "id": product_id,
-        "name": name,
-        "price": price,
-        "stock": stock,
-    })
-    return True
-
-def update_stock(inventory, product_id, new_stock):
-    product = search_product(inventory, product_id)
-    if product is None:
-        return False
-    product["stock"] = new_stock
-    return True
-
-def search_product(inventory, product_id):
-    for product in inventory:
-        if product["id"].upper() == product_id.upper():
-            return product
-    return None
-
-def display_all(inventory):
-    print("\nCurrent Inventory")
-    print("-" * 48)
-    if not inventory:
-        print("Inventory is empty.")
-    for product in inventory:
-        print(f"ID: {product['id']} | Name: {product['name']} | "
-              f"Price: ${product['price']:.2f} | Stock: {product['stock']}")
-    print("-" * 48)
 
 def get_non_negative_int(prompt):
     entry = input(prompt).strip()
@@ -74,16 +24,13 @@ def get_non_negative_float(prompt):
         return None
     return value
 
-def record_transaction(history, product_id, action, amount):
-    history.append({"id": product_id, "action": action, "amount": amount})
-
-def handle_add(inventory, history):
+def handle_add(inventory):
     print("\nAdd New Product")
     product_id = input("Product ID: ").strip().upper()
     if not product_id:
         print("Error: Product ID cannot be empty.")
         return
-    if search_product(inventory, product_id) is not None:
+    if inventory.search_product(product_id) is not None:
         print(f"Error: Product {product_id} already exists.")
         return
     name = input("Product Name: ").strip()
@@ -96,41 +43,35 @@ def handle_add(inventory, history):
     stock = get_non_negative_int("Stock Quantity: ")
     if stock is None:
         return
-    add_product(inventory, product_id, name, price, stock)
-    record_transaction(history, product_id, "add", stock)
+    inventory.add_product(Product(product_id, name, price, stock))
     print("\nProduct added successfully!")
 
-def handle_update(inventory, history):
+def handle_update(inventory):
     print("\nUpdate Stock")
     product_id = input("Enter Product ID: ").strip()
-    product = search_product(inventory, product_id)
+    product = inventory.search_product(product_id)
     if product is None:
         print("\nProduct not found.")
         return
     print("\nProduct Found:")
-    print(f"Name: {product['name']}")
-    print(f"Current Stock: {product['stock']}")
+    print(f"Name: {product.get_name()}")
+    print(f"Current Stock: {product.get_stock()}")
     new_stock = get_non_negative_int("\nNew Stock Quantity: ")
     if new_stock is None:
         return
-    change = new_stock - product["stock"]
-    update_stock(inventory, product["id"], new_stock)
-    record_transaction(history, product["id"], "update", change)
+    inventory.update_stock(product.get_product_id(), new_stock)
     print("\nStock updated successfully!")
 
 def handle_search(inventory):
     print("\nSearch Product")
     product_id = input("Enter Product ID: ").strip()
-    product = search_product(inventory, product_id)
+    product = inventory.search_product(product_id)
     if product is None:
         print("\nProduct not found.")
         return
     print("\nProduct Found")
     print("-" * 48)
-    print(f"ID: {product['id']}")
-    print(f"Name: {product['name']}")
-    print(f"Price: ${product['price']:.2f}")
-    print(f"Stock: {product['stock']}")
+    product.display_information()
     print("-" * 48)
 
 def show_menu():
@@ -148,27 +89,27 @@ def main():
     print("INVENTORY MANAGEMENT SYSTEM")
     print("=" * 40)
     print()
-    inventory, history = load_inventory()
+    inventory = load_inventory(INVENTORY_FILE)
     show_menu()
 
     while True:
         option = input("\nEnter option: ").strip()
 
         if option == "1":
-            display_all(inventory)
+            inventory.display_all()
         elif option == "2":
-            handle_add(inventory, history)
+            handle_add(inventory)
         elif option == "3":
-            handle_update(inventory, history)
+            handle_update(inventory)
         elif option == "4":
             handle_search(inventory)
         elif option == "5":
             print("\nSaving inventory...")
-            save_inventory(inventory, history)
+            save_inventory(inventory, INVENTORY_FILE)
             print(f"Inventory saved successfully to {os.path.basename(INVENTORY_FILE)}.")
         elif option == "6":
             print("\nSaving inventory before exit...")
-            save_inventory(inventory, history)
+            save_inventory(inventory, INVENTORY_FILE)
             print("Inventory saved successfully.")
             print("\nThank you for using Inventory Management System.")
             print("Program terminated.")
