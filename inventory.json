@@ -41,6 +41,12 @@
             "name": "Test Product",
             "price": 100.0,
             "stock": 1000
+        },
+        {
+            "id": "123",
+            "name": "test product",
+            "price": 100.0,
+            "stock": 12
         }
     ],
     "history": [
@@ -68,6 +74,11 @@
             "id": "P007",
             "action": "add",
             "amount": 1000
+        },
+        {
+            "id": "123",
+            "action": "add",
+            "amount": 12
         }
     ]
 }
