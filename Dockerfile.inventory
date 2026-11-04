@@ -2,7 +2,8 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY product.py inventory.py inventory_storage.py inventory_manager.py ./
+COPY product.py physical_product.py digital_product.py can_be_shipped.py \
+     inventory.py inventory_storage.py inventory_manager.py test_lab07.py ./
 
 # inventory.json is read from /app, so mounting the project folder
 # (-v "${PWD}:/app") uses the local code and inventory.json directly

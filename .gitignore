@@ -1,1 +1,18 @@
+# Python cache files
 __pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# Local environment variables
+.env
+
+# IDE settings
+.vscode/
+.idea/
+
+# Lab handouts and submission zips
+INF1103_*.pdf
+*.zip
