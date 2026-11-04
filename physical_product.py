@@ -12,6 +12,6 @@ class PhysicalProduct(Product):
         return self.__weight
 
     def display_information(self):
-        print(f"ID: {self.get_product_id()} | Name: {self.get_name()} | "
-              f"Price: ${self.get_price():.2f} | Stock: {self.get_stock()}")
+        # Overrides Product: the parent prints the common details, this adds the weight
+        super().display_information()
         print(f"    Type: Physical | Weight: {self.__weight:.2f} kg")
