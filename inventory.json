@@ -1,58 +1,84 @@
 {
     "products": [
         {
+            "type": "physical",
             "id": "P001",
             "name": "Laptop",
             "price": 1200.0,
-            "stock": 15
+            "stock": 15,
+            "weight": 2.0
         },
         {
+            "type": "physical",
             "id": "P002",
             "name": "Mouse",
             "price": 25.5,
-            "stock": 50
+            "stock": 50,
+            "weight": 0.1
         },
         {
+            "type": "physical",
             "id": "P003",
             "name": "Keyboard",
             "price": 45.0,
-            "stock": 25
+            "stock": 25,
+            "weight": 0.8
         },
         {
+            "type": "physical",
             "id": "P004",
             "name": "Monitor",
             "price": 299.99,
-            "stock": 10
+            "stock": 10,
+            "weight": 5.5
         },
         {
+            "type": "physical",
             "id": "P005",
             "name": "Webcam",
             "price": 59.9,
-            "stock": 8
+            "stock": 8,
+            "weight": 0.2
         },
         {
+            "type": "physical",
             "id": "P006",
             "name": "Gaming Chair",
             "price": 150.0,
-            "stock": 13
+            "stock": 13,
+            "weight": 18.0
         },
         {
+            "type": "physical",
             "id": "P007",
             "name": "Test Product",
             "price": 100.0,
-            "stock": 1000
+            "stock": 1000,
+            "weight": 1.0
         },
         {
+            "type": "physical",
             "id": "123",
             "name": "test product",
             "price": 100.0,
-            "stock": 0
+            "stock": 0,
+            "weight": 1.0
         },
         {
+            "type": "digital",
             "id": "0808",
             "name": "Lab8Product",
             "price": 8.0,
-            "stock": 8
+            "stock": 8,
+            "download_size": 8.0
+        },
+        {
+            "type": "digital",
+            "id": "D001",
+            "name": "Antivirus Software",
+            "price": 49.9,
+            "stock": 100,
+            "download_size": 350.0
         }
     ],
     "history": [
@@ -95,6 +121,11 @@
             "id": "0808",
             "action": "add",
             "amount": 8
+        },
+        {
+            "id": "D001",
+            "action": "add",
+            "amount": 100
         }
     ]
 }

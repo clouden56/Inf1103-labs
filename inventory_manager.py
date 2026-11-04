@@ -1,7 +1,9 @@
 import os
 
+from can_be_shipped import CanBeShipped
+from digital_product import DigitalProduct
 from inventory_storage import load_inventory, save_inventory
-from product import Product
+from physical_product import PhysicalProduct
 
 INVENTORY_FILE = os.environ.get("INVENTORY_FILE", "inventory.json")
 
@@ -12,20 +14,32 @@ def get_non_negative_int(prompt):
         return None
     return int(entry)
 
-def get_non_negative_float(prompt):
+def get_non_negative_float(prompt, label="Price"):
     entry = input(prompt).strip()
     try:
         value = float(entry)
     except ValueError:
-        print("Error: Please enter a valid price.")
+        print(f"Error: Please enter a valid {label.lower()}.")
         return None
     if value < 0:
-        print("Error: Price cannot be negative.")
+        print(f"Error: {label} cannot be negative.")
         return None
     return value
 
+def get_product_type():
+    entry = input("Product Type (1 = Physical, 2 = Digital): ").strip()
+    if entry == "1":
+        return "physical"
+    if entry == "2":
+        return "digital"
+    print("Error: Please enter 1 for Physical or 2 for Digital.")
+    return None
+
 def handle_add(inventory):
     print("\nAdd New Product")
+    product_type = get_product_type()
+    if product_type is None:
+        return
     product_id = input("Product ID: ").strip().upper()
     if not product_id:
         print("Error: Product ID cannot be empty.")
@@ -43,7 +57,17 @@ def handle_add(inventory):
     stock = get_non_negative_int("Stock Quantity: ")
     if stock is None:
         return
-    inventory.add_product(Product(product_id, name, price, stock))
+    if product_type == "physical":
+        weight = get_non_negative_float("Weight (kg): ", "Weight")
+        if weight is None:
+            return
+        product = PhysicalProduct(product_id, name, price, stock, weight)
+    else:
+        download_size = get_non_negative_float("Download Size (MB): ", "Download size")
+        if download_size is None:
+            return
+        product = DigitalProduct(product_id, name, price, stock, download_size)
+    inventory.add_product(product)
     print("\nProduct added successfully!")
 
 def handle_update(inventory):
@@ -72,6 +96,10 @@ def handle_search(inventory):
     print("\nProduct Found")
     print("-" * 48)
     product.display_information()
+    print(f"Fulfilment: {product.get_fulfilment_info()}")
+    # Only products that implement the CanBeShipped interface have a shipping cost
+    if isinstance(product, CanBeShipped):
+        print(f"Shipping Cost: ${product.calculate_shipping_cost():.2f}")
     print("-" * 48)
 
 def show_menu():
