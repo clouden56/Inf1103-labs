@@ -15,3 +15,6 @@ class PhysicalProduct(Product):
         # Overrides Product: the parent prints the common details, this adds the weight
         super().display_information()
         print(f"    Type: Physical | Weight: {self.__weight:.2f} kg")
+
+    def get_fulfilment_info(self):
+        return "This product requires physical shipping."

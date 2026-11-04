@@ -15,3 +15,6 @@ class DigitalProduct(Product):
         # Overrides Product: the parent prints the common details, this adds the download size
         super().display_information()
         print(f"    Type: Digital | Download Size: {self.__download_size:.2f} MB")
+
+    def get_fulfilment_info(self):
+        return "This product is delivered digitally by download."
