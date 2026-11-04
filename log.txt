@@ -1,4 +1,62 @@
-commit b5557d4434b65e63e2bfd7b0aa27c242875b9891
+commit 23d05d4cb2ef8eca29f54d0b40af9c0edd0bc077
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 4 20:24:24 2026 +0800
+
+    Add Lab 7 UML class diagram with abstract Product, subclasses and CanBeShipped interface
+
+commit 5c06b54e4cf09c2422ff488d46ffee39c4483794
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 4 20:22:38 2026 +0800
+
+    Add Lab 7 unit tests, expand .gitignore and copy new modules in Dockerfile.inventory
+
+commit c1b6e3e211df42fbd24b18fa336d07f2452365f8
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 4 20:22:03 2026 +0800
+
+    Integrate physical and digital products into the inventory system
+    
+    Add Product asks for the product type and its extra attribute, search
+    shows fulfilment info and shipping cost, and inventory.json stores a
+    type identifier so the correct subclass is rebuilt on load.
+
+commit c72f01c2bce8b80ccc7a3b385d91b0762362905b
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 4 20:21:04 2026 +0800
+
+    Add CanBeShipped interface and implement calculate_shipping_cost() in PhysicalProduct
+
+commit 2359f01bea4ac3d415657ada07c39ff798720239
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 4 20:20:50 2026 +0800
+
+    Make Product an abstract class with abstract get_fulfilment_info(), implemented by both subclasses
+
+commit 16f94d1a5a41f14ef507ae445ffb6e95e74ac1c5
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 4 20:20:36 2026 +0800
+
+    Override display_information() in subclasses, reusing the parent version with super()
+
+commit d502f341eb2e7c77d548b08bf2154161de091679
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 4 20:20:13 2026 +0800
+
+    Create PhysicalProduct and DigitalProduct classes that inherit from Product
+
+commit efc454ac8563131716ac56f12ffa5ef4f0ba3b72
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Mon Oct 26 15:03:25 2026 +0800
+
+    Update inventory.json
+
+commit aa2cd53fe4fde884bc2bb8f651fc95539cf60752
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Mon Oct 26 15:01:09 2026 +0800
+
+    Update inventory.json
+
+commit c7a60b5d93ecc87f563671aeaef80a5043767758
 Author: clouden56 <2603050@sit.singaporetech.edu.sg>
 Date:   Mon Oct 26 14:41:08 2026 +0800
 
