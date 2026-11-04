@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1430" height="975" viewBox="0 0 1430 975" font-family="Consolas, 'Courier New', monospace" font-size="12">
+  <defs>
+    <marker id="open-arrow" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
+      <path d="M1,1 L11,6 L1,11" fill="none" stroke="#222" stroke-width="1.3"/>
+    </marker>
+    <marker id="diamond" viewBox="0 0 20 12" refX="1" refY="6" markerWidth="20" markerHeight="12" orient="auto">
+      <path d="M1,6 L10,1 L19,6 L10,11 Z" fill="#fff" stroke="#222" stroke-width="1.3"/>
+    </marker>
+    <marker id="triangle" viewBox="0 0 16 16" refX="15" refY="8" markerWidth="16" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M1,1 L15,8 L1,15 Z" fill="#fff" stroke="#222" stroke-width="1.3" stroke-dasharray="none"/>
+    </marker>
+  </defs>
+  <rect width="1430" height="975" fill="#fff"/>
+
+  <text x="20" y="30" font-weight="bold" font-size="15">P6_FadilSalleh</text>
+  <text x="1410" y="30" text-anchor="end" font-size="13" fill="#555">INF1103 Lab 7 – UML Class Diagram (Inheritance, Abstraction, Interfaces)</text>
+  <line x1="20" y1="40" x2="1410" y2="40" stroke="#bbb"/>
+
+  <!-- inventory_manager (main program) -->
+  <g>
+    <rect x="20" y="60" width="470" height="230" fill="#f4f7fb" stroke="#222" stroke-width="1.5"/>
+    <text x="255" y="78" text-anchor="middle" font-style="italic">«module»</text>
+    <text x="255" y="96" text-anchor="middle" font-weight="bold" font-size="13">inventory_manager (main program)</text>
+    <line x1="20" y1="104" x2="490" y2="104" stroke="#222"/>
+    <text x="30" y="123">  INVENTORY_FILE : str</text>
+    <line x1="20" y1="134" x2="490" y2="134" stroke="#222"/>
+    <text x="30" y="153">+ main() : void</text>
+    <text x="30" y="171">+ show_menu() : void</text>
+    <text x="30" y="189">+ get_product_type() : str | None</text>
+    <text x="30" y="207">+ handle_add(inventory: Inventory) : void</text>
+    <text x="30" y="225">+ handle_update(inventory: Inventory) : void</text>
+    <text x="30" y="243">+ handle_search(inventory: Inventory) : void</text>
+    <text x="30" y="261">+ get_non_negative_int(prompt) : int | None</text>
+    <text x="30" y="279">+ get_non_negative_float(prompt, label) : float | None</text>
+  </g>
+
+  <!-- inventory_storage (file handling) -->
+  <g>
+    <rect x="570" y="60" width="500" height="142" fill="#f4f7fb" stroke="#222" stroke-width="1.5"/>
+    <text x="820" y="78" text-anchor="middle" font-style="italic">«module»</text>
+    <text x="820" y="96" text-anchor="middle" font-weight="bold" font-size="13">inventory_storage (file handling)</text>
+    <line x1="570" y1="104" x2="1070" y2="104" stroke="#222"/>
+    <line x1="570" y1="118" x2="1070" y2="118" stroke="#222"/>
+    <text x="580" y="137">+ product_to_dict(product: Product) : dict</text>
+    <text x="580" y="155">+ dict_to_product(item: dict) : Product | None</text>
+    <text x="580" y="173">+ load_inventory(file_path: str) : Inventory</text>
+    <text x="580" y="191">+ save_inventory(inventory: Inventory, file_path: str) : void</text>
+  </g>
+
+  <!-- Inventory -->
+  <g>
+    <rect x="20" y="360" width="470" height="252" fill="#fff" stroke="#222" stroke-width="1.5"/>
+    <text x="255" y="380" text-anchor="middle" font-weight="bold" font-size="13">Inventory</text>
+    <line x1="20" y1="390" x2="490" y2="390" stroke="#222"/>
+    <text x="30" y="409">- __products : list[Product]</text>
+    <text x="30" y="427">- __history : list[dict]</text>
+    <line x1="20" y1="438" x2="490" y2="438" stroke="#222"/>
+    <text x="30" y="457">+ __init__()</text>
+    <text x="30" y="475">+ add_product(product: Product) : bool</text>
+    <text x="30" y="493">+ search_product(product_id: str) : Product | None</text>
+    <text x="30" y="511">+ update_stock(product_id: str, new_stock: int) : bool</text>
+    <text x="30" y="529">+ display_all() : void</text>
+    <text x="30" y="547">+ get_products() : list[Product]</text>
+    <text x="30" y="565">+ get_history() : list[dict]</text>
+    <text x="30" y="583">+ load_history(history: list[dict]) : void</text>
+    <text x="30" y="601">- __record_transaction(product_id, action, amount) : void</text>
+  </g>
+
+  <!-- Product (abstract) -->
+  <g>
+    <rect x="570" y="360" width="500" height="284" fill="#fff" stroke="#222" stroke-width="1.5"/>
+    <text x="820" y="378" text-anchor="middle">&lt;&lt;abstract&gt;&gt;</text>
+    <text x="820" y="396" text-anchor="middle" font-weight="bold" font-style="italic" font-size="13">Product</text>
+    <line x1="570" y1="404" x2="1070" y2="404" stroke="#222"/>
+    <text x="580" y="423">- __product_id : str</text>
+    <text x="580" y="441">- __name : str</text>
+    <text x="580" y="459">- __price : float</text>
+    <text x="580" y="477">- __stock : int</text>
+    <line x1="570" y1="488" x2="1070" y2="488" stroke="#222"/>
+    <text x="580" y="507">+ __init__(product_id, name, price, stock)</text>
+    <text x="580" y="525">+ get_product_id() : str</text>
+    <text x="580" y="543">+ get_name() : str</text>
+    <text x="580" y="561">+ get_price() : float</text>
+    <text x="580" y="579">+ get_stock() : int</text>
+    <text x="580" y="597">+ update_stock(quantity: int) : bool</text>
+    <text x="580" y="615">+ display_information() : void</text>
+    <text x="580" y="633" font-style="italic">+ get_fulfilment_info() : str  {abstract}</text>
+  </g>
+
+  <!-- CanBeShipped (interface) -->
+  <g>
+    <rect x="1120" y="400" width="290" height="88" fill="#fffaf0" stroke="#222" stroke-width="1.5"/>
+    <text x="1265" y="418" text-anchor="middle">&lt;&lt;interface&gt;&gt;</text>
+    <text x="1265" y="436" text-anchor="middle" font-weight="bold" font-style="italic" font-size="13">CanBeShipped</text>
+    <line x1="1120" y1="444" x2="1410" y2="444" stroke="#222"/>
+    <line x1="1120" y1="458" x2="1410" y2="458" stroke="#222"/>
+    <text x="1130" y="477" font-style="italic">+ calculate_shipping_cost() : float</text>
+  </g>
+
+  <!-- DigitalProduct -->
+  <g>
+    <rect x="300" y="720" width="440" height="144" fill="#fff" stroke="#222" stroke-width="1.5"/>
+    <text x="520" y="740" text-anchor="middle" font-weight="bold" font-size="13">DigitalProduct</text>
+    <line x1="300" y1="750" x2="740" y2="750" stroke="#222"/>
+    <text x="310" y="769">- __download_size : float</text>
+    <line x1="300" y1="780" x2="740" y2="780" stroke="#222"/>
+    <text x="310" y="799">+ __init__(product_id, name, price, stock, download_size)</text>
+    <text x="310" y="817">+ get_download_size() : float</text>
+    <text x="310" y="835">+ display_information() : void</text>
+    <text x="310" y="853">+ get_fulfilment_info() : str</text>
+  </g>
+
+  <!-- PhysicalProduct -->
+  <g>
+    <rect x="830" y="720" width="440" height="198" fill="#fff" stroke="#222" stroke-width="1.5"/>
+    <text x="1050" y="740" text-anchor="middle" font-weight="bold" font-size="13">PhysicalProduct</text>
+    <line x1="830" y1="750" x2="1270" y2="750" stroke="#222"/>
+    <text x="840" y="769">- __weight : float</text>
+    <text x="840" y="787" text-decoration="underline">+ BASE_SHIPPING_COST : float = 5.00</text>
+    <text x="840" y="805" text-decoration="underline">+ SHIPPING_COST_PER_KG : float = 2.00</text>
+    <line x1="830" y1="816" x2="1270" y2="816" stroke="#222"/>
+    <text x="840" y="835">+ __init__(product_id, name, price, stock, weight)</text>
+    <text x="840" y="853">+ get_weight() : float</text>
+    <text x="840" y="871">+ display_information() : void</text>
+    <text x="840" y="889">+ get_fulfilment_info() : str</text>
+    <text x="840" y="907">+ calculate_shipping_cost() : float</text>
+  </g>
+
+  <!-- Relationships -->
+  <g stroke="#222" stroke-width="1.3" fill="none">
+    <!-- Inheritance / generalisation: solid line, hollow triangle at the parent -->
+    <path d="M520,720 V685 H1050 V720"/>
+    <line x1="820" y1="685" x2="820" y2="644" marker-end="url(#triangle)"/>
+    <!-- Interface realisation: dashed line, hollow triangle at the interface -->
+    <line x1="1200" y1="720" x2="1265" y2="488" stroke-dasharray="7 4" marker-end="url(#triangle)"/>
+    <!-- Aggregation: Inventory holds 0..* Products -->
+    <line x1="490" y1="470" x2="570" y2="470" marker-start="url(#diamond)" marker-end="url(#open-arrow)"/>
+    <!-- Dependencies -->
+    <line x1="490" y1="110" x2="570" y2="110" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+    <line x1="255" y1="290" x2="255" y2="360" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+    <line x1="600" y1="202" x2="460" y2="360" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+    <line x1="820" y1="202" x2="820" y2="360" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+    <line x1="490" y1="260" x2="600" y2="360" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+  </g>
+  <g font-size="11" font-style="italic" fill="#333">
+    <text x="530" y="462" text-anchor="middle" font-style="normal">0..*</text>
+    <text x="530" y="102" text-anchor="middle">«uses»</text>
+    <text x="263" y="330">«uses»</text>
+    <text x="572" y="230" text-anchor="end">«creates»</text>
+    <text x="604" y="342">«creates subtypes»</text>
+    <text x="828" y="290">«creates subtypes»</text>
+  </g>
+
+  <g font-size="11" fill="#555">
+    <text x="20" y="945">Notation:  solid line + hollow triangle = inheritance (PhysicalProduct, DigitalProduct is-a Product)   dashed line + hollow triangle = interface realisation (PhysicalProduct implements CanBeShipped)</text>
+    <text x="20" y="963">◇── aggregation (Inventory holds 0..* Products)   - - -&gt; dependency (uses / creates)   italic = abstract   underlined = class (static) attribute</text>
+  </g>
+</svg>
