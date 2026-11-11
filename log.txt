@@ -1,3 +1,15 @@
+commit e5acd45cd6a895ab9e50bcc687ff44c86215f78a
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 11 15:37:52 2026 +0800
+
+    Move OrderLine into its own file to keep one class per file
+
+commit 25b5e164554975306978235c5e877ace03167589
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 11 15:34:09 2026 +0800
+
+    Update git log for week 10
+
 commit a86f7eab65db0501027f8ad6b98ef7af37f99af4
 Author: clouden56 <2603050@sit.singaporetech.edu.sg>
 Date:   Wed Nov 11 15:33:39 2026 +0800
