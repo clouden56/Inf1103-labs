@@ -1,3 +1,55 @@
+commit a86f7eab65db0501027f8ad6b98ef7af37f99af4
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 11 15:33:39 2026 +0800
+
+    Add Lab 8 Predict First notes with actual results and written LSP answers
+
+commit ced7e9603c7e2694cd97841214b6acd26b82c22d
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 11 15:32:10 2026 +0800
+
+    Add Lab 8 UML class diagram with association, aggregation, composition and typed members
+
+commit c629ec5137f23ba047436545d187f88b7f445f8c
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 11 15:30:19 2026 +0800
+
+    Add Lab 8 tests and demo for relationships, type hints, LSP and polymorphism; copy new modules in Dockerfile
+
+commit 9a99733b21f5dc36b6e92a9f447aecf2d4ef5d34
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 11 15:29:04 2026 +0800
+
+    Integrate suppliers, product removal and orders into the inventory system
+    
+    inventory.json now stores suppliers once and links products by
+    supplier_id, so products sharing a supplier share one Supplier object.
+    The menu adds Remove Product and Create Order options.
+
+commit f9f0b874094760a93c58b5d49438c6cad2fed29a
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 11 15:27:47 2026 +0800
+
+    Add Order and OrderLine classes: Order creates and manages its own OrderLines (composition)
+
+commit aa0f511c73db57a6168317e6c802478906f92448
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 11 15:27:34 2026 +0800
+
+    Inventory aggregation: add remove_product() and find_product() with type hints
+
+commit f1d89a1a273702864b39beb16868cecddb49183f
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 11 15:27:20 2026 +0800
+
+    Add Supplier class and associate each Product with a Supplier, with type hints on the product hierarchy
+
+commit e918a040c25549a9419b30617bc6b1c38391d6f2
+Author: clouden56 <2603050@sit.singaporetech.edu.sg>
+Date:   Wed Nov 4 20:24:44 2026 +0800
+
+    Update git log for week 9
+
 commit 23d05d4cb2ef8eca29f54d0b40af9c0edd0bc077
 Author: clouden56 <2603050@sit.singaporetech.edu.sg>
 Date:   Wed Nov 4 20:24:24 2026 +0800
