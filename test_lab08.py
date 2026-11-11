@@ -8,7 +8,8 @@ from contextlib import redirect_stdout
 from digital_product import DigitalProduct
 from inventory import Inventory
 from inventory_storage import load_inventory, save_inventory
-from order import Order, OrderLine
+from order import Order
+from order_line import OrderLine
 from physical_product import PhysicalProduct
 from product import Product
 from supplier import Supplier
