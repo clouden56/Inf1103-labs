@@ -15,4 +15,5 @@ venv/
 
 # Lab handouts and submission zips
 INF1103_*.pdf
+INF1103_*.docx
 *.zip
