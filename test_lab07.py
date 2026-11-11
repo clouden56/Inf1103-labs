@@ -10,6 +10,7 @@ from inventory import Inventory
 from inventory_storage import load_inventory, save_inventory
 from physical_product import PhysicalProduct
 from product import Product
+from supplier import Supplier
 
 
 def captured_display(product):
@@ -22,8 +23,9 @@ def captured_display(product):
 class TestLab07(unittest.TestCase):
 
     def setUp(self):
-        self.guitar = PhysicalProduct("P100", "Guitar", 350.00, 5, 4.2)
-        self.os = DigitalProduct("D100", "Operating System", 139.00, 50, 5200)
+        self.supplier = Supplier("S001", "TechSource Pte Ltd", "sales@techsource.example.com")
+        self.guitar = PhysicalProduct("P100", "Guitar", 350.00, 5, self.supplier, 4.2)
+        self.os = DigitalProduct("D100", "Operating System", 139.00, 50, self.supplier, 5200)
 
     def test_physical_product_stores_and_displays_weight(self):
         self.assertEqual(self.guitar.get_weight(), 4.2)
@@ -43,13 +45,13 @@ class TestLab07(unittest.TestCase):
 
     def test_abstract_product_cannot_be_instantiated(self):
         with self.assertRaises(TypeError):
-            Product("P000", "Generic", 1.00, 1)
+            Product("P000", "Generic", 1.00, 1, self.supplier)
 
     def test_physical_products_calculate_shipping_cost(self):
         self.assertIsInstance(self.guitar, CanBeShipped)
-        self.assertEqual(PhysicalProduct("P1", "Mouse", 25.5, 1, 0.1).calculate_shipping_cost(), 5.20)
-        self.assertEqual(PhysicalProduct("P2", "Laptop", 1200, 1, 2.0).calculate_shipping_cost(), 9.00)
-        self.assertEqual(PhysicalProduct("P3", "Chair", 150, 1, 18.0).calculate_shipping_cost(), 41.00)
+        self.assertEqual(PhysicalProduct("P1", "Mouse", 25.5, 1, self.supplier, 0.1).calculate_shipping_cost(), 5.20)
+        self.assertEqual(PhysicalProduct("P2", "Laptop", 1200, 1, self.supplier, 2.0).calculate_shipping_cost(), 9.00)
+        self.assertEqual(PhysicalProduct("P3", "Chair", 150, 1, self.supplier, 18.0).calculate_shipping_cost(), 41.00)
 
     def test_digital_products_do_not_implement_shipping(self):
         self.assertNotIsInstance(self.os, CanBeShipped)
@@ -59,8 +61,8 @@ class TestLab07(unittest.TestCase):
         inventory = Inventory()
         self.assertTrue(inventory.add_product(self.guitar))
         self.assertTrue(inventory.add_product(self.os))
-        self.assertFalse(inventory.add_product(DigitalProduct("p100", "Duplicate", 1, 1, 1)))
-        self.assertIs(inventory.search_product("d100"), self.os)
+        self.assertFalse(inventory.add_product(DigitalProduct("p100", "Duplicate", 1, 1, self.supplier, 1)))
+        self.assertIs(inventory.find_product("d100"), self.os)
         self.assertTrue(inventory.update_stock("P100", 9))
         self.assertEqual(self.guitar.get_stock(), 9)
         self.assertFalse(inventory.update_stock("P100", -1))
@@ -72,11 +74,11 @@ class TestLab07(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             path = os.path.join(folder, "inventory.json")
             with redirect_stdout(io.StringIO()):
-                save_inventory(inventory, path)
-                loaded = load_inventory(path)
+                save_inventory(inventory, {}, path)
+                loaded, _ = load_inventory(path)
 
-        guitar = loaded.search_product("P100")
-        os_product = loaded.search_product("D100")
+        guitar = loaded.find_product("P100")
+        os_product = loaded.find_product("D100")
         self.assertIsInstance(guitar, PhysicalProduct)
         self.assertEqual(guitar.get_weight(), 4.2)
         self.assertIsInstance(os_product, DigitalProduct)
